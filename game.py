@@ -1,5 +1,7 @@
 import arcade
 import random
+import os
+cwd = os.getcwd()
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 640
@@ -13,32 +15,32 @@ class Fighter(arcade.Sprite):
         self.cur = 0
         self.textures = []
         if role == 'P':
-            texture = arcade.load_texture('res\still1.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/still1.png'))
             self.textures.append(texture)
-            texture = arcade.load_texture('res\still2.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/still2.png'))
             self.textures.append(texture)
-            texture = arcade.load_texture('res\punch1.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/punch1.png'))
             self.textures.append(texture)
-            texture = arcade.load_texture('res\punch2.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/punch2.png'))
             self.textures.append(texture)
-            texture = arcade.load_texture('res\defend.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/defend.png'))
             self.textures.append(texture)
-            texture = arcade.load_texture('res\ko.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/ko.png'))
             self.textures.append(texture)
             self.texture = self.textures[self.cur]
             self.right = 315
         else:
-            texture = arcade.load_texture('res\still1R.png', mirrored=True)
+            texture = arcade.load_texture(os.path.join(cwd, 'res/still1R.png'), mirrored=True)
             self.textures.append(texture)
-            texture = arcade.load_texture('res\still2R.png', mirrored=True)
+            texture = arcade.load_texture(os.path.join(cwd, 'res/still2R.png'), mirrored=True)
             self.textures.append(texture)
-            texture = arcade.load_texture('res\punch1R.png', mirrored=True)
+            texture = arcade.load_texture(os.path.join(cwd, 'res/punch1R.png'), mirrored=True)
             self.textures.append(texture)
-            texture = arcade.load_texture('res\punch2R.png', mirrored=True)
+            texture = arcade.load_texture(os.path.join(cwd, 'res/punch2R.png'), mirrored=True)
             self.textures.append(texture)
-            texture = arcade.load_texture('res\defendR.png', mirrored=True,)
+            texture = arcade.load_texture(os.path.join(cwd, 'res/defendR.png'), mirrored=True,)
             self.textures.append(texture)
-            texture = arcade.load_texture('res\koR.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/koR.png'))
             self.textures.append(texture)
             self.texture = self.textures[self.cur]
             self.left = 325
@@ -84,12 +86,12 @@ class MyGame(arcade.Window):
         self.fighter_list = arcade.SpriteList()
         self.player = Fighter('P')
         self.enemy = Fighter('E')
-        self.energy = arcade.Sprite('res\energy.png', 0.2)
+        self.energy = arcade.Sprite(os.path.join(cwd, 'res/energy.png'), 0.2)
         self.energy.bottom = 560
         self.energy.left = 10
-        self.bg = arcade.load_texture('res\BG.png')
-        self.punch_sound = arcade.load_sound('res\punch.wav')
-        self.grunt_sound = arcade.load_sound('res\grunt.mp3')
+        self.bg = arcade.load_texture(os.path.join(cwd, 'res/BG.png'))
+        self.punch_sound = arcade.load_sound(os.path.join(cwd, 'res/punch.wav'))
+        self.grunt_sound = arcade.load_sound(os.path.join(cwd, 'res/grunt.mp3'))
 
     def on_draw(self):
         arcade.start_render()
@@ -103,10 +105,10 @@ class MyGame(arcade.Window):
         arcade.draw_xywh_rectangle_filled(630-self.enemy.life,590,self.enemy.life,10,arcade.color.ROSE)
         arcade.draw_text(str(self.player.energy),30,560,arcade.color.BLACK,18,bold=True)
         if self.game == 'Lose':
-            texture = arcade.load_texture('res\lose.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/lose.png'))
             arcade.draw_lrwh_rectangle_textured(192,80,256,128,texture)
         if self.game == 'Won':
-            texture = arcade.load_texture('res\won.png')
+            texture = arcade.load_texture(os.path.join(cwd, 'res/won.png'))
             arcade.draw_lrwh_rectangle_textured(192,80,256,128,texture)
 
 
